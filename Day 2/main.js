@@ -88,7 +88,34 @@ console.log(`'There is no exercise better for the heart than reaching down and l
 // Question 32
 console.log(`"Love is not patronizing and charity isn't about pity, it is about love. Charity and love are the same -- with charity you give love, so don't just give money but reach out your hand instead."
 `);
-// Question 33
+// Question 33 - regex
+// console.log("python".includes("python"))
+
+// Question 34
+console.log("I hope this course is not full of jargon".includes("jargon"));
+// Question 35
+let randomNum = Math.ceil(Math.random()*100);
+console.log(randomNum);
+// Question 36
+// use the formula Math.floor(Math.random()*(max - min + 1) + min)
+let randomNum2 = Math.floor(Math.random()*(51)+50);
+console.log(randomNum2);
+// Question 37
+let randomNum3 = Math.floor(Math.random()*256);
+console.log(randomNum3);
+// Question 38
+let randomNum4 = Math.floor(Math.random()*"javascript".length + 1);
+console.log("javascript".charAt(randomNum4));
+// Question 39
+console.log("1 1 1 1 1\n2 1 2 4 8\n3 1 3 9 27\n4 1 4 16 64\n5 1 5 25 125");
+// Question 40a
+console.log(typeof("10")===10);
+// Question 40b
+console.log(typeof(parseInt("10")) === typeof(10));
+// Question 41a
+console.log(Math.ceil(parseFloat("9.8")) === 10);
+// console.log(parseInt("9.8"))
+
 
 
 
