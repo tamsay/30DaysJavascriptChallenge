@@ -2,6 +2,8 @@
 
 let challenge2 = "You cannot end a sentence with because because because is a conjunction";
 let challenge3 = 'Facebook, Google, Microsoft, Apple, IBM, Oracle, Amazon';
+let text5 = 'Love is the best thing in this world. Some found their love and some are still looking for their love.';
+let text6 = 'He earns 5000 euro from salary per month, 10000 euro annual bonus, 15000 euro online courses per month.';
 
 // Question 1
 let challenge = "30 Days Of JavaScript ";
@@ -69,28 +71,55 @@ console.log(challenge.trim());
 console.log(challenge.startsWith("30"));
 // Question 23
 console.log(challenge.endsWith(" "));
-// Question 24 - not yet done
-console.log(challenge.match("a"));
-// Question 25 - same as above
-
+// Question 24
+console.log(challenge.match(/a/g));
+// Question 25
+let count = challenge2.match(/because/g);
+console.log(count.length)
 // Question 26
 console.log("30 Days of ".concat("Javascript"));
 // Question 27
 console.log(challenge.repeat(2));
-// Question 28 - another regex question
-
-// Question 29 - regex issue
+// Question 28 - method 1
+console.log(text5.match(/love/gi).length)
+// Question 29 - method 1
+let count2 = text6.match(/\d+/g);
+let sum = 0;
+for(x=0; x < count2.length; x++){
+    sum = parseInt(count2[x]) + sum;
+}
+console.log(sum);
+// Question 29 - method 2
+let count3 = text6.match(/\d+/g);
+let count4 = [];
+for(x=0; x < count3.length; x++){
+    count4.push(parseInt(count3[x]));
+};
+let sum2 = count4.reduce((index, acc) => {
+    return index + acc;
+},0);
+console.log('new sum with for loop array conversion is: ', sum2);
+// Question 29 - method 3
+let count5 = text6.match(/\d+/g).map(Number);
+let sum3 = count5.reduce((index, acc) => {
+    return index + acc;
+},0);
+console.log('new sum with direct string array conversion to numbers is: ', sum3);
 
 // Question 30 - regex
+const sentence = '%I $am@% a %tea@cher%, &and& I lo%#ve %tea@ching%;. There $is nothing; &as& mo@re rewarding as educa@ting &and& @emp%o@wering peo@ple. ;I found tea@ching m%o@re interesting tha@n any other %jo@bs. %Do@es thi%s mo@tivate yo@u to be a tea@cher!? %Th#is 30#Days&OfJavaScript &is also $the $result of &love& of tea&ching'
+let newSentence = sentence.replace(/[@&&$%#]/gi, "");
+// console.log(sentence.replace(/[@&&$%#]/gi, ""));
+console.log(newSentence);
 
 // Question 31
 console.log(`'There is no exercise better for the heart than reaching down and lifting people up.' by John Holmes teaches us to help to one another.`);
 // Question 32
 console.log(`"Love is not patronizing and charity isn't about pity, it is about love. Charity and love are the same -- with charity you give love, so don't just give money but reach out your hand instead."
 `);
-// Question 33 - regex
-// console.log("python".includes("python"))
-
+// Question 33
+console.log("python".includes("on"));
+console.log("jargon".includes("on"));
 // Question 34
 console.log("I hope this course is not full of jargon".includes("jargon"));
 // Question 35
