@@ -1,17 +1,20 @@
 // Exercise 1
 // Question 1
-let firstName = "tope", lastName = "michael", country = "nigeria", city = "lagos", age = 40, isMarried = "false", year = 2020;
-// Question 2
-console.log(typeof(firstName));
-console.log(typeof(lastName));
-console.log(typeof(country));
-console.log(typeof(city));
-console.log(typeof(age));
-console.log(typeof(isMarried));
-console.log(typeof(year));
-// Question 3
-console.log(typeof ("10") === typeof (10));
-console.log(typeof (parseInt("9.8")) === typeof (10));
+let personalDetails = ()=>{
+    let firstName = "tope", lastName = "michael", country = "nigeria", city = "lagos", age = 40, isMarried = "false", year = 2020;
+    // Question 2
+    console.log(typeof(firstName));
+    console.log(typeof(lastName));
+    console.log(typeof(country));
+    console.log(typeof(city));
+    console.log(typeof(age));
+    console.log(typeof(isMarried));
+    console.log(typeof(year));
+    // Question 3
+    console.log(typeof ("10") === typeof (10));
+    console.log(typeof (parseInt("9.8")) === typeof (10));
+}
+// personalDetails();
 
 /* Exercise 2 (I will create a function for it to avoid getting prompts each time the page reloads because of the other exercises) */
 
@@ -202,7 +205,8 @@ let perimeterOfTriangle1 = () =>{
 
 
     // Exercise 4
-    console.log(4 > 3);
+    let conditionals = ()=>{
+        console.log(4 > 3);
     console.log(4 >= 3);
     console.log(4 < 3);
     console.log(4 <= 3);
@@ -214,19 +218,20 @@ let perimeterOfTriangle1 = () =>{
     console.log(4 == '4');
     console.log(4 === '4');
 
+    // 4 > 3    true
+    // 4 >= 3    true
+    // 4 < 3    false
+    // 4 <= 3   false
+    // 4 == 4   true
+    // 4 === 4  true
+    // 4 != 4   false
+    // 4 !== 4  false
+    // 4 != '4' false
+    // 4 == '4' true
+    // 4 === '4' false
+    }
+    // conditionals();
     
-// 4 > 3    true
-// 4 >= 3    true
-// 4 < 3    false
-// 4 <= 3   false
-// 4 == 4   true
-// 4 === 4  true
-// 4 != 4   false
-// 4 !== 4  false
-// 4 != '4' false
-// 4 == '4' true
-// 4 === '4' false
-
 // Exercise 6 - TERNARY OPERATOR
 // Question 1a
 let nameLength = ()=>{
@@ -280,12 +285,8 @@ let dateTime = ()=>{
     console.log(`Total seconds from 1970 till now is ${totalSeconds}`);
     console.log(`The current time is ${hour}:${minute}`);
     console.log(`Full date and time (YYY-MM-DD HH:mm:ss) ${year}-${month}-${dateInMonth} ${hour}:${minute}:${seconds}`);
-
-
-
-
-
-
+    console.log(`Full date and time (DD-MM-YYYY HH:mm:ss) ${dateInMonth}-${month}-${year} ${hour}:${minute}:${seconds}`);
+    console.log(`Full date and time (DD/MM/YYY HH:mm:ss) ${dateInMonth}/${month}/${year} ${hour}:${minute}:${seconds}`);
 }
 dateTime();
 
