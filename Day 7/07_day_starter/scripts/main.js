@@ -422,9 +422,192 @@ let alphaNumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567
 
  // Question 7
  let shuffledArray = (array)=>{
+    
+        var currentIndex = array.length, temporaryValue, randomIndex;
+      
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+      
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+      
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+        console.log(array)
+
+        return array;
+ }
+ // shuffledArray([4,5,1,2,7]);
+
+ // Question 8
+ let factorial = (num)=>{
+    let answer=1;
+    if(num === 0){
+        console.log('answer is: ', answer)
+        return answer = 1;
+    }
+    else{
+        let answer = num;
+        while(num > 1){
+            answer = (answer * (num-1));
+            num --;
+            console.log(answer)
+        }
+        console.log(answer)
+        return answer;
+    }
+ }
+ // factorial(0);
+
+ // Question 9
+ let isEmpty = (num)=>{
 
  }
- shuffledArray([4,5,1,2,7]);
+
+ // Question 10
+ let unknownSum = (...argument)=>{
+
+    let sum = argument.reduce((arr, acc)=>{
+        return arr + acc;
+    },0);
+    console.log(sum);
+ }
+ // unknownSum(2,3,6,7)
+
+ // Question 11
+ let sumOfArrayItems = (array)=>{
+    //  let status = array.test(/\w/g);
+     let sum = 0;
+        for(x=0; x<array.length; x++){
+            if(isNaN(array[x])){
+                console.log("Array contains an invalid value; supply only numbers")
+                sum = 0;
+                break;
+            }
+            else{
+                sum += array[x];
+            }
+        }
+     console.log(sum)
+ }
+ // sumOfArrayItems([1,2,3,4,[3]])
+
+// Question 12
+let average = (array)=>{
+    //  let status = array.test(/\w/g);
+     let sum = 0;
+        for(x=0; x<array.length; x++){
+            if(isNaN(array[x])){
+                console.log("Array contains an invalid value; supply only numbers")
+                sum = 0;
+                break;
+            }
+            else{
+                sum += array[x];
+            }
+        }
+     console.log(sum/array.length)
+ }
+ // average([1,2,3,4, '4t'])
+
+ // Question 13
+ let modifyArray = (array)=>{
+     if(array.length < 5){
+         console.log('Not found: Invalid array lenght')
+     }
+     else{
+         let fifthItem = array[4].toUpperCase();
+         console.log(fifthItem)
+         let modArray = array.splice(4,1,fifthItem);
+         console.log(array);
+     }
+
+ }
+ // modifyArray(['Google', 'Facebook','Apple', 'Amazon', 'tlonge']);
+
+ // Question 14
+ let isPrime = (num) =>{
+    if(num == 0 || num == 1){
+        console.log( num + " is a not prime number")
+    }
+    else{
+    for (x=2; x < num ; x++){
+        if(num % x === 0){
+            console.log(num + ' is not a prime number')
+            return false;
+        }
+    }
+    console.log(num)
+        return num;
+ }
+}
+ // isPrime(20);
+
+ // Question 15
+ let isUnique = ()=>{
+
+ }
+
+ // Question 16
+ let sameDataType = (array) =>{
+     let type = typeof(array[0]);
+
+    let result = array.map((item)=>{
+        if (typeof(item) === type){
+            return true;
+        }
+        return false;
+    })
+    if(result.includes(false)){
+        console.log('All the items of the array are not of the same type')
+        return false
+    }
+    else{
+        console.log('All the items of the array are of the same type')
+        return true;
+    }
+ }
+ // sameDataType([1,2,3,5,'baby'])
+
+ // Question 17
+ let isValidVariable = (item)=>{
+     let result = item.match(/[$_]/g);
+     if (result){
+        console.log('input is invalid')
+     }
+     else{
+         console.log('input is valid')
+         return item;
+     }
+ }
+ // isValidVariable("top@_")
+
+ // Question 18
+ let sevenRandom = () =>{
+     let result = [];
+     for (x=0; x < 7; x++){
+         let rand = Math.floor(Math.random()*10)
+         result.push(rand);
+     }
+     console.log(result);
+ }
+ // sevenRandom()
+
+ // Question 19
+ let reverseCountries = (array) =>{
+     // console.log(array);
+     let result = [...array];
+     let newCountryArray = result.reverse();
+     console.log(newCountryArray)
+     return newCountryArray;
+ }
+ reverseCountries(countries)
+
+ 
 
 
 
