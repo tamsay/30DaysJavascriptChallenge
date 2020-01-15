@@ -125,20 +125,10 @@ let dayType = (value)=>{
 }
 // dayType("saturday");
 
-// Exercise 8 - not yet complete
-let numOfDays = ()=>{
-    let now = new Date(2020, 4, 0);
-    let year = now.getFullYear();
-    console.log(now.getDate());
-
+// Exercise 8
+let numOfDaysInMonth = (month, year)=>{
+    let now = new Date(year, month, 0);
+    let result = now.getDate();
+    console.log(`The number of days in month ${month} is: ${result}`);
 }
-numOfDays();
-
-var getDaysInMonth = function(month,year) {
-    // Here January is 1 based
-    //Day 0 is the last day in the previous month
-   return new Date(year, month, 0).getDate();
-  // Here January is 0 based
-  // return new Date(year, month+1, 0).getDate();
-  };
-  // console.log(getDaysInMonth(1, 2012));
+numOfDaysInMonth(2, 2000);
