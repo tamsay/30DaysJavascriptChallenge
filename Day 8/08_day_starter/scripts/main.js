@@ -96,7 +96,63 @@ const users = {
 // Question 1
 let highestSkills = (obj)=>{
     // console.log(obj)
-    let objArray = [...obj]
-        console.log("The element is:", objArray.length)
+    let skillsLength = [];
+    let objArray = Object.entries(obj)
+    // let skills = objArray[6][1].skills.length;
+    // console.log(skills)
+    for(x=0; x<7; x++){
+        let result = objArray[x][1].skills.length;
+        skillsLength.push(result);
+    }
+    let maxSkill = skillsLength.indexOf(Math.max(...skillsLength));
+    let answer = objArray[maxSkill][0]
+    console.log('The person with the highest skills is: ', answer)
 }
-highestSkills(users)
+ // highestSkills(users)
+
+ // Question 2
+ let loggedIn = (obj)=>{
+     let userArray = Object.entries(obj);
+    let logStatus = [];
+    let logPoint = [];
+
+    for(x=0; x<userArray.length; x++){
+        let status = userArray[x][1].isLoggedIn;
+        logStatus.push(status)
+        let point = userArray[x][1].points;
+        point >=50 ? logPoint.push(point) : false;
+    }
+    let loggedIn = [];
+        logStatus.map(item=>{
+        let result = item.toString().match(/true/g);
+        result? loggedIn.push(result) : false;
+        
+    })
+    // console.log(logStatus)
+    console.log('the amount of people logged in is: ', loggedIn.length)
+    console.log('the amount of people with 50 point or more is: ', logPoint.length)
+ }
+ // loggedIn(users)
+
+ // Question 3
+ let mernStack = (obj)=>{
+    // console.log(obj)
+    let mernSkill = [];
+    let objArray = Object.entries(obj)
+    for(x=0; x<7; x++){
+        let result = objArray[x][1].skills;
+        let valid=[];
+        let answer = result.filter((item)=>{
+            if(item == 'MongoDB' || item == 'Express' || item == 'React' || item == 'Node'){
+                valid.push(item);
+            }
+        })
+        if (valid.length == 4){
+            mernSkill.push(objArray[x][0])
+        }
+        // mernSkill.push(result);
+    }
+    console.log('The MERN developers are: ', mernSkill)
+}
+  mernStack(users)
+
