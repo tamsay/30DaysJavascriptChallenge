@@ -498,7 +498,7 @@ console.log(copyPerson.hasOwnProperty('score'))
 2. **** Questions:2, 3 and 4 are based on the following two arrays:users and products ()
 
   ```js
-      const users = [
+      const users2 = [
       {
           _id: 'ab12ex',
           username: 'Alex',
