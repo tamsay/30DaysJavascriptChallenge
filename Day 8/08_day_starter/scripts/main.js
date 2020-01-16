@@ -297,10 +297,10 @@ const users2 = [
   }
 ]
 
-// Question 2
-let userValidation = (name)=>{
+// Question 2a
+let userValidation = (name, password)=>{
     for(x=0; x < users2.length ; x++){
-        if (users2[x].username == name ){
+        if ((users2[x].username === name) && (users2[x].password === password)){
            return true;
         }
     }
@@ -308,14 +308,86 @@ let userValidation = (name)=>{
 
 let signUp = (name, ...arg)=>{
     let result = userValidation(name);
-    console.log(result)
     if (result){
         console.log(name, " is a registered user")
     }
     else{
-        users2.username = {arg[0]};
+        let details = {
+            id: arg[0][3],
+            username: arg[0][0],
+            email: arg[0][1],
+            password: arg[0][2],
+        }
+        users2.push(details);
         console.log(name, 'is not a registered user')
     }
 }
-signUp('tope', ['Tope']);
-console.log(users2)
+
+// signUp('Tope', ['Tope', 'tope@gmail.com', '123321', '34ere3']);
+ // console.log(users2)
+
+// Question 2b
+let signIn = (username, password)=>{
+    let answer = userValidation(username, password);
+    answer ? console.log('Login successful') : console.log('Login unsuccessful, wrong details.')
+}
+// signIn('Alex', '123123');
+
+// Question 3a
+let rateProduct = (product, rating)=>{
+    let rate = {
+        userId: rating[0],
+        rate: rating[1]
+    }
+    let index;
+    products.map(item=>{
+        if(item.name == product){
+         index = products.indexOf(item);
+        }
+    })
+    // console.log(index)
+   products[index].ratings.push(rate);
+}
+// rateProduct('Laptop', ['ere4343', 4.5])
+// console.log(products)
+
+// Question 3b
+let averageRating = ()=>{
+    for(x=0; x<products.length ; x++){
+        let average;
+
+        if (products[x].ratings.length === 0){
+            average = 0;
+       }
+
+       else {
+        let total = 0;
+        let count = 0;
+        for(y=0; y < products[x].ratings.length; y++){
+            total = total + products[x].ratings[y].rate;
+            count = count + 1;
+        }
+        average = total/count;
+    }
+        console.log(average);
+    }
+}
+// averageRating()
+
+// Question 4
+let likeProduct = (userid)=>{
+    for(x=0; x < products.length; x++){
+        if(products[x].likes === []){
+            products[x].likes.push(userid)
+        }
+        else if (products[x].likes.join('').includes(userid)){
+            let position = products[x].likes.indexOf(userid);
+            products[x].likes.splice(position, 1);
+        }
+        else {
+            products[x].likes.push(userid)
+        }
+    }
+}
+// likeProduct('zwf8md')
+// console.log(products)
