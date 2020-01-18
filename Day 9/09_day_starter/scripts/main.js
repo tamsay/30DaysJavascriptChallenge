@@ -296,21 +296,82 @@ let mostSpokenLanguages = (countries, count) =>{
 
 // Question 3
 let mostPopulatedCountries = (country, number)=>{
-    let population = []
-
-    country.map(item=>{
-        let pop = item.population;
-        population.push(pop);
+    let sortedArray = country.sort((a,b)=>{
+        return b.population - a.population;
     })
-    let sortedPopulation = population.sort((a,b)=>{
-        return b - a;
+    let requiredResult = sortedArray.splice(0, number);
+    
+    let filteredResult = requiredResult.map(item=>{
+        return {country: item.name, population: item.population}
     })
-    let requiredResult = sortedPopulation.splice(0, number);
-    console.log(requiredResult);
-
-    // console.log(sortedPopulation);
+    console.log(filteredResult);
 }
-mostPopulatedCountries(countries, 10)
+// mostPopulatedCountries(countries, 5)
+
+// Question 4
+   const ages = [31, 26, 34, 37, 27, 26, 32, 32, 26, 27, 27, 24, 32, 33, 27, 25, 26, 38, 37, 31, 34, 24, 33, 29, 26]
+let statistics = {
+    count : ()=>{
+        return ages.length;
+    },
+    sum : ()=>{
+        return ages.reduce((arr, acc=0)=>{
+            return arr + acc;
+        })
+    },
+    min : ()=>{
+       return  result =  Math.min(...ages)
+    },
+    max : ()=>{
+        return result = Math.max(...ages)
+    },
+    range : ()=>{
+        return statistics.max() - statistics.min();
+    },
+    mean : ()=>{
+        return (Math.ceil(statistics.sum()/statistics.count()));
+    },
+    median : ()=>{
+        let sort = ages.sort((a,b)=>{
+            return a - b;
+        })
+        if(sort.length%2 == 0){
+            return ((sort[sort.length-1/2]) + (sort[sort.length/2]))/2;
+        }
+        else{
+            return sort[Math.floor(sort.length/2)];
+        }
+    },
+    var : ()=>{
+        let diffArray =[];
+        let mean1 = statistics.mean();
+        ages.map(arr=>{
+            diffArray.push(arr-mean1);
+        });
+        let summation = diffArray.reduce((arr, acc)=>{
+            return acc**2 + arr;
+        },0);
+        return (summation/statistics.count());
+    },
+    std : ()=>{
+        return Math.sqrt(statistics.var());
+    },
+    freqDist : ()=>{
+        
+    }
+}
+
+    console.log('Count:', statistics.count()) // 25
+    console.log('Sum: ', statistics.sum()) // 744
+    console.log('Min: ', statistics.min()) // 24
+    console.log('Max: ', statistics.max()) // 38
+    console.log('Range: ', statistics.range()) // 14
+    console.log('Mean: ', statistics.mean()) // 30
+    console.log('Median: ',statistics.median()) // 29
+    // console.log('Mode: ', statistics.mode()) // {'mode': 26, 'count': 5}
+    console.log('Variance: ',statistics.var()) // 17.5
+    console.log('Standard Deviation: ', statistics.std()) // 4.2
+    // console.log('Frequency Distribution: ',statistics.freqDist()) # [(20.0, 26), (16.0, 27), (12.0, 32), (8.0, 37), (8.0, 34), (8.0, 33), (8.0, 31), (8.0, 24), (4.0, 38), (4.0, 29), (4.0, 25)]
 
 
 
