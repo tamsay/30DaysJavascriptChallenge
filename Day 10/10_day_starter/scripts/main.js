@@ -112,8 +112,8 @@ let intersectionSet = ()=>{
 // Question 1
 let mostSpokenLanguages=(num)=>{
     let countrySet = new Set(countries);
-    console.log(countrySet);
-    console.log(countries)
+   //  console.log(countrySet);
+    // console.log(countries)
     let countryLanguage = [];
     for(language in countries){
         countryLanguage.push(countries[language].languages);
@@ -122,8 +122,6 @@ let mostSpokenLanguages=(num)=>{
     // console.log(allLanguageArray)
     let uniqueLanguage = new Set(allLanguageArray);
     let uniqueArray = [...uniqueLanguage];
-    let countIndex = uniqueArray.map(item=> uniqueArray.indexOf(item));
-    // console.log(countIndex)
 
     // Method 1 using for method
     let resultArray = [];
@@ -152,8 +150,21 @@ let mostSpokenLanguages=(num)=>{
     console.log(finalSet)
 
     // Method 2 - using the filter method
-
+    let newCountArray = [];
+    uniqueArray.map(item=>{
+        let newCount = allLanguageArray.filter(lang=>{
+            if(item == lang){
+                return (item);
+            }
+        })
+        newCountArray.push([newCount.length, item])
+      })
+        let sortedLanguage = newCountArray.sort((a,b)=>{
+         return b[0] - a[0];
+     })
+        let slicedResult = sortedLanguage.slice(0,num);
+        console.log(slicedResult);
 }
-mostSpokenLanguages(3);
+mostSpokenLanguages(30);
 
 
