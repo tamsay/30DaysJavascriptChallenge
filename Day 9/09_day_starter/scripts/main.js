@@ -1,4 +1,4 @@
-console.log(countries)
+// console.log(countries)
 // alert('Open the console and check if the countries has been loaded')
 
 const countries2 = ['Finland', 'Sweden', 'Denmark', 'Norway', 'IceLand', 'England', 'Ethiopia', 'Egypts']
@@ -239,12 +239,34 @@ let findCountryIndex = ()=>{
  // producePrice();
 
  // Question 3
- let categorizeCountries = ()=>{
-
+ let categorizeCountries = (keyword)=>{
+    let category = countries.filter(item=>{
+        return (item.name.toLowerCase()).match(keyword.toLowerCase())
+    })
+    console.log(category);
  }
+// categorizeCountries("island");
 
  // Question 4
-
+let nameStart = ()=>{
+    let start = countries.map(item=>{
+        return startAlpha = (item.name.toUpperCase().charAt(0));  
+    })
+    let startSet = new Set(start)
+    let output = [];
+    [...startSet].filter(item=>{
+        let count = 0;
+        start.map(x=>{
+            if (item == x){
+                count = count + 1;
+            }
+        })
+        output.push({name: item, count})
+    })
+    // console.log(output)
+    return output;
+}
+// nameStart();
 
  // Question 5
  let getFirstTenCountries = ()=>{
@@ -267,7 +289,22 @@ let findCountryIndex = ()=>{
 // getLastTenCountries()
 
 // Question 7
-// highest occurence
+let highestOccurence = ()=>{
+    let totalArray = nameStart();
+    let number = [];
+    totalArray.map(({count})=>{
+       number.push(count);
+    })
+    let highest = Math.max(...number);
+        let answer =  (totalArray).findIndex(item=>{
+            return item.count == highest;
+        })
+    let result = totalArray[answer]
+
+    console.log(result)
+    return result;
+}
+// highestOccurence()
 
 
 // Exercise: LEVEL 3
@@ -288,11 +325,32 @@ let countryArray = ()=>{
 }
 // countryArray();
 
-// Question 2 - to be tackled later
-let mostSpokenLanguages = (countries, count) =>{
-
+// Question 2
+let mostSpokenLanguages = (countries, number) =>{
+    let arr = []
+    countries.map(item=>{
+        arr.push(item.languages)
+    })
+    let allLanguages = arr.join(',').split(',');
+    let languagesSet = new Set(allLanguages);
+    let langArray = [...languagesSet]
+    let compactResult = []
+    
+    langArray.filter(item=>{
+        let count = 0;
+        allLanguages.map(x=>{
+            if(item == x) count = count + 1;
+        })
+        compactResult.push([count, item]);
+    })
+    let sortedLangArray = compactResult.sort((a,b)=>{
+        return b[0] - a[0];
+    })
+    let result = sortedLangArray.slice(0,number);
+     console.log(result);
+     return result;
 }
-// mostSpokenLanguages(countries, 10);
+ // mostSpokenLanguages(countries, 4);
 
 // Question 3
 let mostPopulatedCountries = (country, number)=>{
@@ -342,6 +400,37 @@ let statistics = {
             return sort[Math.floor(sort.length/2)];
         }
     },
+    mode : ()=>{
+        let modeSet = new Set(ages);
+        let arr = [];
+        [...modeSet].filter(item=>{
+            let count = 0;
+            ages.map(x=>{
+                if(item == x) count = count + 1;
+            })
+            arr.push([item, count]);
+        })
+        // Method 1
+        let result = arr.reduce((acc, item)=>{
+            if(item[1] > acc){
+                acc = item[1]
+            }
+            return acc;
+        },0);
+        let index = arr.findIndex(item=>{
+            return item[1] == result;
+        })
+        return (arr[index]);
+
+        // Method 2
+        let sortResult = arr.sort((a,b)=>{
+            return b[1] - a[1]
+        }).slice(0,1);
+        // return sortResult;
+
+        // Method 3
+        // Make use of map or filter to get the highest occurence and find the index
+    },
     var : ()=>{
         let diffArray =[];
         let mean1 = statistics.mean();
@@ -357,7 +446,16 @@ let statistics = {
         return Math.sqrt(statistics.var());
     },
     freqDist : ()=>{
-
+        let freqDistSet = new Set(ages);
+        let arr = [];
+        [...freqDistSet].filter(item=>{
+            let count = 0;
+            ages.map(x=>{
+                if(item == x) count = count + 1;
+            })
+            arr.push([item, count]);
+        })
+        return arr;
     }
 }
 
@@ -368,10 +466,10 @@ let statistics = {
     console.log('Range: ', statistics.range()) // 14
     console.log('Mean: ', statistics.mean()) // 30
     console.log('Median: ',statistics.median()) // 29
-    // console.log('Mode: ', statistics.mode()) // {'mode': 26, 'count': 5}
+    console.log('Mode: ', statistics.mode()) // {'mode': 26, 'count': 5}
     console.log('Variance: ',statistics.var()) // 17.5
     console.log('Standard Deviation: ', statistics.std()) // 4.2
-    // console.log('Frequency Distribution: ',statistics.freqDist()) # [(20.0, 26), (16.0, 27), (12.0, 32), (8.0, 37), (8.0, 34), (8.0, 33), (8.0, 31), (8.0, 24), (4.0, 38), (4.0, 29), (4.0, 25)]
+    console.log('Frequency Distribution: ',statistics.freqDist()); // [(20.0, 26), (16.0, 27), (12.0, 32), (8.0, 37), (8.0, 34), (8.0, 33), (8.0, 31), (8.0, 24), (4.0, 38), (4.0, 29), (4.0, 25)]
 
 
 
