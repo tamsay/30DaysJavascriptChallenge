@@ -19,11 +19,9 @@ console.groupEnd();
 
 // Exercise: LEVEL 2
 
-// Question 1 - the assert method is throwing errors I'll debug it later 
-
-// console.assert(document.getElementById("demo"), "You have no element with ID 'demo'");
-// console.assert(3 > 4, '3 is not greater than 4')
- 
+// Question 1  
+ // console.assert(10 < 4, 'ba aiki ba')
+// console.assert(document.getElementById("Sample"), "You have no element with ID 'Sample'in this document");
 
 // Question 2
 console.warn('scalpersticket did me bad')
@@ -32,7 +30,6 @@ console.warn('scalpersticket did me bad')
 console.error('I\'m in financial pain')
 
 // Exercise: LEVEL 3
-
 console.time('while loop')
 let x = 0;
 while (x < 10) {
