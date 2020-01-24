@@ -19,8 +19,11 @@ console.groupEnd();
 
 // Exercise: LEVEL 2
 
-// Question 1
-// console.assert(10 < 2, 'assert reached')
+// Question 1 - the assert method is throwing errors I'll debug it later 
+
+// console.assert(document.getElementById("demo"), "You have no element with ID 'demo'");
+// console.assert(3 > 4, '3 is not greater than 4')
+ 
 
 // Question 2
 console.warn('scalpersticket did me bad')
