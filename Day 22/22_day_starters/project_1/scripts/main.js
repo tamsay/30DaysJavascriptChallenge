@@ -1,5 +1,5 @@
 let body = document.querySelector('body');
-body.setAttribute('style','background-color : #45eeaa; text-align : center');
+body.setAttribute('style','background-color : #ffffff; text-align : center');
 let h3 = document.querySelector('h3');
 let divWwrapper = document.querySelector('.wrapper');
 divWwrapper.style.backgroundColor = 'none';
@@ -66,10 +66,11 @@ let table = (numOfRows)=>{
 let tdStyle = document.querySelectorAll('.tabledata')
 for(item of tdStyle){
     item.style.padding = '0.2em';
-    item.style.border = '5px solid white';
+    item.style.border = '0.5px solid blue';
     item.style.fontSize = '25px';
 }
 
+// try to implement this using GRID AND FLEXBOX Layouts as well
 
 /*
 const container = document.getElementById("container");
