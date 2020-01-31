@@ -27,7 +27,6 @@ let isPrime = (num) =>{
 let table = (numOfRows)=>{
     var data = numArray();
     // DRAW HTML TABLE
-    // let perrow = numOfRows; // 10 items per row
      let   count = 0; // Flag for current cell
        let  table = document.createElement("table");
       let  row = table.insertRow();
