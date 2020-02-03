@@ -60,7 +60,7 @@ const asabenehChallenges2020 = {
       {
         social: 'LinkedIn',
         url: 'https://www.linkedin.com/in/asabeneh/',
-        fontawesomeIcon: '<i class="fab fa-linkedin">'
+        fontawesomeIcon: '<i class="fab fa-linkedin"></i>'
       },
       {
         social: 'Twitter',
@@ -92,15 +92,7 @@ const asabenehChallenges2020 = {
   challenges: [
     {
       name: '30 Days Of Python',
-      topics: [
-        'Python',
-        'Flask',
-        'Numpy',
-        'Pandas',
-        'Statistics',
-        'API',
-        'MongoDB'
-      ],
+      topics: ['Python','Flask','Numpy','Pandas','Statistics','API','MongoDB'],
       days: 30,
       status: 'Done',
       questions: 'Above 500',
