@@ -77,7 +77,7 @@ let challengeListFunction =()=>{
           stack.push(element.name)
           skillList.push(element.topics)
           status.push(element.status);
-          allDetails.push([element.name, element.topics, element.status])
+          allDetails.push([element.name, element.topics[0], element.status])
      })
 
     challengeListDiv.appendChild(challengeList);
@@ -87,7 +87,9 @@ let challengeListFunction =()=>{
         listItem.setAttribute('classList', `listItem${x} list`);
         listItem.style.display = 'flex';
         listItem.style.flexDirection = 'row';
-        listItem.style.justifyContent = 'space-between'
+        listItem.style.justifyContent = 'space-around';
+        listItem.style.border = '1px solid black';
+        listItem.style.margin = '10px';
 
         for (y=0; y < 3; y++){
             let subListItem = document.createElement('div');
@@ -97,6 +99,39 @@ let challengeListFunction =()=>{
         }
         challengeList.appendChild(listItem)
     }
+    let skillSubList = document.querySelectorAll('#subList1');
+        
+    let createInterimDiv =(element, index)=>{
+        let interimDiv = document.createElement('div');
+        interimDiv.style.display = 'none';
+        interimDiv.id = 'fullSkillsList'
+        skillList[index].forEach(item=>{
+            let skill = document.createElement('p');
+            skill.innerText = item;
+            interimDiv.appendChild(skill);
+            element.appendChild(interimDiv);
+        }); 
+       return element;           
+    }
+    // createInterimDiv();
+
+    skillSubList.forEach((element, index)=>{
+        element.addEventListener('click', ()=>{
+            console.log(element)
+
+             let interim = createInterimDiv(element, index);
+             console.log(interim)
+
+            //  if(interim.style.display === 'none'){
+            //     return interim.style.display = 'block'
+            //  }
+            //  else{
+            //  //  element.removeChild(interimDiv)
+            //    return  interimDiv.style.display = 'none'
+            //    // createInterimDiv(index).style.display = 'none'
+            //  }
+    })
+});
 }
 challengeListFunction();
 
@@ -108,16 +143,25 @@ let profileSectionFunction =()=>{
     let bioDiv = document.createElement('div');
     bioDiv.setAttribute('id' , 'bioDiv');
     profileSection.appendChild(bioDiv);
+    bioDiv.style.backgroundColor = 'gray';
     
     let authorName = document.createElement('p');
     authorName.setAttribute('id' , 'authorName');
     bioDiv.appendChild(authorName);
+    authorName.style.fontWeight = 'bold';
+    authorName.style.fontFamily = 'arial';
+    authorName.style.fontSize = '30px';
+    authorName.style.backgroundColor = 'green'
+    authorName.innerText = `${projectDetails.author.firstName} ${projectDetails.author.lastName}`
+    
     
     let authorSocialMedia = document.createElement('div');
     authorSocialMedia.setAttribute('id' , 'authorSocialMedia');
     bioDiv.appendChild(authorSocialMedia);
     authorSocialMedia.style.display = 'flex';
-    authorSocialMedia.style.justifyContent = 'center'
+    authorSocialMedia.style.justifyContent = 'center';
+    authorSocialMedia.style.margin = '0px'
+    authorSocialMedia.style.backgroundColor = 'pink'
 
     let socialLinks = projectDetails.author.socialLinks;
 
@@ -128,10 +172,10 @@ let profileSectionFunction =()=>{
 
         link.innerText = (socialLinks[x].social);
         media.appendChild(link);
+        media.style.margin = '10px'
         authorSocialMedia.appendChild(media);
     }
 
-    authorName.innerText = `${projectDetails.author.firstName} ${projectDetails.author.lastName}`
     
     let missionStatement = document.createElement('p');
     missionStatement.setAttribute('id' , 'missionStatement'); 
@@ -143,18 +187,15 @@ let profileSectionFunction =()=>{
     profileSection.appendChild(profileList);
     profileList.style.display = 'flex'
     profileList.style.width = '100%'
-    profileList.style.justifyContent = 'space-between';
+    profileList.style.justifyContent = 'space-around';
 
     for(x=0; x < 3; x++){
         let section = document.createElement('div');
         section.style.width = 'fit-width'
-        section.style.flex = '1 0 200px'
-        // section.style.backgroundColor = 'pink'
 
         if(x === 0){
             for(y=0; y < projectDetails.author.titles.length; y++){
                 let list = document.createElement('li')
-                list.style.flex = '1 0 200px'
                 list.style.listStyle = 'none'
                 list.innerText = projectDetails.author.titles[y];
                 list.style.backgroundColor = 'green';
@@ -165,8 +206,6 @@ let profileSectionFunction =()=>{
         else if (x === 1){
             for(y=0; y < projectDetails.author.skills.length; y++){
                 let list = document.createElement('li')
-                // list.style.width = 'fit-width'
-                list.style.flex = '1 0 200px'
                 list.style.listStyleType = 'circle'
                 list.innerText = projectDetails.author.skills[y];
                 list.style.backgroundColor = 'pink'
@@ -177,7 +216,6 @@ let profileSectionFunction =()=>{
         else {
             for(y=0; y < projectDetails.author.qualifications.length; y++){
                 let list = document.createElement('li')
-                list.style.flex = '1 0 200px'
                 list.innerText = projectDetails.author.qualifications[y];
                 list.style.backgroundColor = 'orange';
                 list.style.textAlign = 'left'
@@ -196,6 +234,9 @@ let keywordsSectionFunction =()=>{
     body.insertBefore(keywordsDiv, document.querySelector('script'))
     let heading = document.createElement('p')
     keywordsDiv.appendChild(heading);
+    heading.style.fontFamily = 'arial'
+    heading.style.fontSize = '20px'
+    heading.style.fontWeight = 'bold'
     heading.innerText = 'Keywords'
     let keywords = document.createElement('p')
     keywords.style.display = 'flex'
@@ -208,9 +249,10 @@ let keywordsSectionFunction =()=>{
     for (x = 0; x < content.length; x++){
         let color = `#${(Math.ceil(Math.random()*16777215)).toString(16)}`
         let span = document.createElement('span');
-        span.style.borderRadius = '20px';
+        span.style.borderRadius = '7px';
         span.style.margin = '10px';
-        span.style.padding = '1px';
+        span.style.border = '0.4px solid black'
+        span.style.padding = '5px';
         span.style.width = 'fit-content';
         span.style.fontWeight = 'bold';
         span.style.fontFamily = 'arial';
