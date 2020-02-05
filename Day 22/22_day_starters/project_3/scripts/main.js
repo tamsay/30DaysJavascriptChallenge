@@ -222,7 +222,10 @@ let profileSectionFunction =()=>{
     let bioDiv = document.createElement('div');
     bioDiv.setAttribute('id' , 'bioDiv');
     profileSection.appendChild(bioDiv);
-    bioDiv.style.backgroundColor = 'gray';
+    bioDiv.style.display = 'flex';
+    bioDiv.style.flexDirection = 'column';
+    bioDiv.style.margin = '5px';
+    bioDiv.style.alignItems = 'center';
     
     let authorName = document.createElement('p');
     authorName.setAttribute('id' , 'authorName');
@@ -230,17 +233,18 @@ let profileSectionFunction =()=>{
     authorName.style.fontWeight = 'bold';
     authorName.style.fontFamily = 'arial';
     authorName.style.fontSize = '30px';
-    authorName.style.backgroundColor = 'green'
+    authorName.style.width = 'fit-content'
+    authorName.style.margin = '5px 0px 0px 0px'
     authorName.innerText = `${projectDetails.author.firstName} ${projectDetails.author.lastName}`
-    
     
     let authorSocialMedia = document.createElement('div');
     authorSocialMedia.setAttribute('id' , 'authorSocialMedia');
     bioDiv.appendChild(authorSocialMedia);
     authorSocialMedia.style.display = 'flex';
-    authorSocialMedia.style.justifyContent = 'center';
-    authorSocialMedia.style.margin = '0px'
-    authorSocialMedia.style.backgroundColor = 'pink'
+    authorSocialMedia.style.alignItems = 'center'
+    authorSocialMedia.style.width = 'fit-content'
+    authorSocialMedia.style.margin = '5px 0px'
+    authorSocialMedia.style.padding  =  '0px'
 
     let socialLinks = projectDetails.author.socialLinks;
 
@@ -248,14 +252,15 @@ let profileSectionFunction =()=>{
         let media = document.createElement('div');
         let link = document.createElement('a');
         link.setAttribute('href', `${socialLinks[x].url}`)
-
-        link.innerText = (socialLinks[x].social);
+        let icon = socialLinks[x].fontawesomeIcon;
+        link.innerHTML = icon;
         media.appendChild(link);
-        media.style.margin = '10px'
+        media.style.margin = '0px 5px'
+        media.style.fontSize = '50px';
+        media.style.color = 'black'
         authorSocialMedia.appendChild(media);
     }
 
-    
     let missionStatement = document.createElement('p');
     missionStatement.setAttribute('id' , 'missionStatement'); 
     profileSection.appendChild(missionStatement);
@@ -267,39 +272,85 @@ let profileSectionFunction =()=>{
     profileList.style.display = 'flex'
     profileList.style.width = '100%'
     profileList.style.justifyContent = 'space-around';
+    profileList.style.backgroundColor = 'blue'
 
     for(x=0; x < 3; x++){
         let section = document.createElement('div');
-        section.style.width = 'fit-width'
+        section.style.width = 'fit-width';
+        
 
         if(x === 0){
+            let heading = document.createElement('h3');
+                heading.id = 'titleHeading';
+                heading.innerText = 'Titles'
+                heading.style.textAlign = 'left'
+                
             for(y=0; y < projectDetails.author.titles.length; y++){
                 let list = document.createElement('li')
-                list.style.listStyle = 'none'
-                list.innerText = projectDetails.author.titles[y];
+                list.style.listStyle = 'none';
+                list.style.display = 'flex'
+                list.style.fontFamily = 'arial'
+                let titleIcon = document.createElement('p');
+                titleIcon.id = 'titleIcon';
+                titleIcon.style.margin = '0px 5px'
+                titleIcon.style.border = '1px solid red'
+                titleIcon.style.fontSize = '15px'
+                let titleText = document.createElement('p');
+                titleText.id = 'titleText';
+                titleText.style.margin = '0px 5px'
+                titleText.style.border = '1px solid red'
+                titleText.style.fontSize = '15px'
+
+                titleIcon.innerText = projectDetails.author.titles[y][0];
+                titleText.innerText = projectDetails.author.titles[y][1];
+
+                list.appendChild(titleIcon);
+                list.appendChild(titleText);
                 list.style.backgroundColor = 'green';
-                list.style.textAlign = 'left'
-                section.appendChild(list)
+                
+                heading.appendChild(list)
+                
             }
+            section.appendChild(heading)
         }
         else if (x === 1){
+            let heading = document.createElement('h3');
+                heading.id = 'skillsHeading';
+                heading.innerText = 'Skills'
+                heading.style.textAlign = 'left'
+            
+            // <i class="fas fa-check"></i>
             for(y=0; y < projectDetails.author.skills.length; y++){
                 let list = document.createElement('li')
-                list.style.listStyleType = 'circle'
-                list.innerText = projectDetails.author.skills[y];
+                list.style.listStyleType = 'none'
+                let checkIcon = document.createElement('i');
+                checkIcon.className = 'fas fa-check'
+                list.appendChild(checkIcon);
+                // list.innerText = projectDetails.author.skills[y];
+                let skillsText = document.createElement('p');
+                skillsText.innerText = projectDetails.author.skills[y];
+                 list.appendChild(skillsText)
                 list.style.backgroundColor = 'pink'
                 list.style.textAlign = 'left'
-                section.appendChild(list)
+                heading.appendChild(list)
             }
+            section.appendChild(heading)
+
         }
         else {
+            let heading = document.createElement('h3');
+                heading.id = 'qualificationsHeading';
+                heading.innerText = 'Qualifications'
+                heading.style.textAlign = 'left'
+
             for(y=0; y < projectDetails.author.qualifications.length; y++){
                 let list = document.createElement('li')
                 list.innerText = projectDetails.author.qualifications[y];
                 list.style.backgroundColor = 'orange';
-                list.style.textAlign = 'left'
-                section.appendChild(list)
+                list.style.textAlign = 'left';
+                heading.appendChild(list)
             }
+            section.appendChild(heading)
         }
         profileList.appendChild(section);
     }
