@@ -14,24 +14,27 @@ let changeTextColor =(element)=>{
         let randomColor = '#'; 
         let color = (Math.ceil(Math.random()*16777215)).toString(16);
         randomColor += color;      
-       // element.style.color = `${randomColor}`;
+        element.style.color = `${randomColor}`;
 }
 let changeBackgroundColor =(element)=>{
     let randomColor = '#'; 
     let color = (Math.ceil(Math.random()*16777215)).toString(16);
     randomColor += color;      
-    // element.style.backgroundColor = `${randomColor}`;
+    element.style.backgroundColor = `${randomColor}`;
 }
 
 // Add the heading to the body and set its values
 let mainHeadingFunction =()=>{
     heading.setAttribute('id' , 'mainHeading');
+    heading.style.fontFamily = 'arial';
+    heading.style.fontWeight = 'bold'
     headingYear.setAttribute('id' , 'headingYear');
     body.insertBefore(heading, challengeListDiv)
     heading.innerText = `${projectDetails.challengeTitle} in `;
     heading.appendChild(headingYear);
     headingYear.innerText = projectDetails.challengeYear;
     let span = document.querySelector('#headingYear');
+    span.style.fontSize = '2em'
     span.style.color = setInterval(changeTextColor, 1000, span);    
     // span.style.backgroundColor = setInterval(changeBackgroundColor, 1000, span);    
 
@@ -44,21 +47,28 @@ let challengeDescriptionFunction =()=>{
     body.insertBefore(challengeDescription, challengeListDiv);
     challengeDescription.innerText = `${projectDetails.challengeSubtitle}`;
     let idSelector = document.querySelector('#challengeDescription');
-    idSelector.style.color = 'blue';
-    idSelector.style.textDecoration = 'underline'
+    idSelector.style.color = 'black';
+    idSelector.style.textDecoration = 'underline';
+    idSelector.style.fontFamily = 'arial'
 }
 challengeDescriptionFunction();
 
 // Add the Date and Time div and style it
 let dateTimeFunction =()=>{
     dateTimeDiv.setAttribute('id' , 'dateTimeDiv');
+    dateTimeDiv.style.display = 'inline'
+    dateTimeDiv.style.width = 'fit-content';
     body.insertBefore(dateTimeDiv, challengeListDiv);
     let idSelector = document.querySelector('#dateTimeDiv');
     let now = new Date();
     let finalDate = now.toUTCString();
     idSelector.innerText = finalDate;
-    idSelector.style.color = `${setInterval(changeTextColor, 1000, idSelector)}`
-    // idSelector.style.backgroundColor = `${setInterval(changeBackgroundColor, 1000, idSelector)}`
+    // idSelector.style.color = `${setInterval(changeTextColor, 1000, idSelector)}`
+    idSelector.style.color = 'black';
+    idSelector.style.fontWeight = 'bold';
+    idSelector.style.fontSize = '1.5em';
+    idSelector.style.fontFamily = 'arial'
+    idSelector.style.backgroundColor = `${setInterval(changeBackgroundColor, 1000, idSelector)}`
 }
 dateTimeFunction()
 
@@ -79,59 +89,128 @@ let challengeListFunction =()=>{
           status.push(element.status);
           allDetails.push([element.name, element.topics[0], element.status])
      })
-
+    challengeList.style.padding = '5px'
     challengeListDiv.appendChild(challengeList);
     idSelector.style.backgroundColor = 'pink';
     for(x=0; x < (projectDetails.challenges).length; x++){
         let listItem = document.createElement('li');
-        listItem.setAttribute('classList', `listItem${x} list`);
+        listItem.setAttribute('class', `listItem${x}`);
         listItem.style.display = 'flex';
         listItem.style.flexDirection = 'row';
-        listItem.style.justifyContent = 'space-around';
         listItem.style.border = '1px solid black';
-        listItem.style.margin = '10px';
-
+        listItem.style.margin = '5px 5px 5px 5px';
+        listItem.style.fontFamily = 'arial'
+        listItem.style.fontSize = '20px'
+        listItem.style.fontWeight = 'bold'
+        listItem.style.padding = '25px'
+        
+          
+        
         for (y=0; y < 3; y++){
+            if (y === 1){ // method one of populating the full skills div without creating an additional function to do that and hiding the div until needed.
+                let subListItem = document.createElement('div');
+                subListItem.setAttribute('id', `subList${y}`);
+                let listHeader = document.createElement('li')
+                subListItem.appendChild(listHeader);
+                listHeader.innerText = allDetails[x][y];
+                let fullSkillsList2 = document.createElement('div')
+                fullSkillsList2.id = `fullSkills${y}`;
+                fullSkillsList2.style.display = "none"
+                listItem.appendChild(subListItem);
+                subListItem.appendChild(fullSkillsList2);
+                for(a=0; a < skillList[x].length; a++){
+                    let items = document.createElement('p')
+                    items.innerText = skillList[x][a];
+                    fullSkillsList2.appendChild(items);
+                }
+            }
+            else {
             let subListItem = document.createElement('div');
             subListItem.setAttribute('id', `subList${y}`);
             listItem.appendChild(subListItem);
             subListItem.innerText = allDetails[x][y];
+            }
         }
-        challengeList.appendChild(listItem)
+    challengeList.appendChild(listItem)
     }
     let skillSubList = document.querySelectorAll('#subList1');
-        
+    skillSubList.forEach((element)=>{
+        element.addEventListener('click', ()=>{
+             let idSelector2 = element.querySelector(`#fullSkills1`)
+             if(idSelector2.style.display === 'none'){
+                idSelector2.style.display = 'block'
+             }
+             else{
+               idSelector2.style.display = 'none'
+             }
+    })
+    });
+
+    let subList0 = document.querySelectorAll('#subList0')
+    subList0.forEach(element=>{
+        element.style.flex = '2';
+        element.style.textAlign = 'left';
+    });
+    let subList1 = document.querySelectorAll('#subList1')
+    subList1.forEach(element=>{
+        element.style.flex = '1';
+        element.style.textAlign = 'left';
+        element.style.listStyleType = 'square';
+
+    });
+    let subList2 = document.querySelectorAll('#subList2')
+    subList2.forEach((element, index)=>{
+       element.style.flex = '1';
+       let text = element.textContent;
+       let item = document.querySelector(`.listItem${index}`)
+
+       switch (true) {
+           case (text === 'Done') : 
+                item.style.backgroundColor = 'green';
+                let firstRow = document.querySelector(`.listItem${index}>div`);
+                firstRow.style.textDecoration = 'underline'
+                break;
+           case (text === 'Ongoing') :
+                item.style.backgroundColor = 'yellow';
+                let secondRow = document.querySelector(`.listItem${index}>div`);
+                secondRow.style.textDecoration = 'underline'
+                break;
+           case (text === 'Coming') :
+                item.style.backgroundColor = 'Red'
+       }
+    });
+
+let secondCollapseDiv = ()=>{
+        /*
+// This is another method for achieving the collapsing DIV effect however, it creates a new div each time the function is called which is not very efficient. So I'll go with the first method.
+
     let createInterimDiv =(element, index)=>{
         let interimDiv = document.createElement('div');
         interimDiv.style.display = 'none';
-        interimDiv.id = 'fullSkillsList'
+        interimDiv.id = `fullSkillsList${index}`
         skillList[index].forEach(item=>{
             let skill = document.createElement('p');
             skill.innerText = item;
             interimDiv.appendChild(skill);
             element.appendChild(interimDiv);
         }); 
-       return element;           
+      return element;           
     }
-    // createInterimDiv();
-
     skillSubList.forEach((element, index)=>{
         element.addEventListener('click', ()=>{
-            console.log(element)
-
-             let interim = createInterimDiv(element, index);
-             console.log(interim)
-
-            //  if(interim.style.display === 'none'){
-            //     return interim.style.display = 'block'
-            //  }
-            //  else{
-            //  //  element.removeChild(interimDiv)
-            //    return  interimDiv.style.display = 'none'
-            //    // createInterimDiv(index).style.display = 'none'
-            //  }
+              createInterimDiv(element, index);
+             let idSelector = document.querySelector(`#fullSkillsList${index}`);
+             if(idSelector.style.display === 'none'){
+                 idSelector.style.display = 'block'
+             }
+             else{
+                 idSelector.style.display = 'none'
+             }
     })
 });
+
+*/
+    }
 }
 challengeListFunction();
 
