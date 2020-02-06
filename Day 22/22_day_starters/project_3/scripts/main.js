@@ -100,9 +100,9 @@ let challengeListFunction =()=>{
         listItem.style.border = '1px solid black';
         listItem.style.margin = '5px 5px 5px 5px';
         listItem.style.fontFamily = 'arial'
-        listItem.style.fontSize = '20px'
+        listItem.style.fontSize = '15px'
         listItem.style.fontWeight = 'bold'
-        listItem.style.padding = '25px'
+        listItem.style.padding = '5px'
         
           
         
@@ -121,6 +121,7 @@ let challengeListFunction =()=>{
                 for(a=0; a < skillList[x].length; a++){
                     let items = document.createElement('p')
                     items.innerText = skillList[x][a];
+                    items.style.fontWeight = 'normal'
                     fullSkillsList2.appendChild(items);
                 }
             }
@@ -166,7 +167,7 @@ let challengeListFunction =()=>{
 
        switch (true) {
            case (text === 'Done') : 
-                item.style.backgroundColor = 'green';
+                item.style.backgroundColor = '#90ee90';
                 let firstRow = document.querySelector(`.listItem${index}>div`);
                 firstRow.style.textDecoration = 'underline'
                 break;
@@ -272,7 +273,7 @@ let profileSectionFunction =()=>{
     profileList.style.display = 'flex'
     profileList.style.width = '100%'
     profileList.style.justifyContent = 'space-around';
-    profileList.style.backgroundColor = 'blue'
+    // profileList.style.backgroundColor = 'blue'
 
     for(x=0; x < 3; x++){
         let section = document.createElement('div');
@@ -290,26 +291,26 @@ let profileSectionFunction =()=>{
                 list.style.listStyle = 'none';
                 list.style.display = 'flex'
                 list.style.fontFamily = 'arial'
+                list.style.alignItems = 'center'
                 let titleIcon = document.createElement('p');
                 titleIcon.id = 'titleIcon';
-                titleIcon.style.margin = '0px 5px'
-                titleIcon.style.border = '1px solid red'
+                titleIcon.style.margin = '0px 5px 0px 0px'
                 titleIcon.style.fontSize = '15px'
+                titleIcon.style.padding = '5px'
                 let titleText = document.createElement('p');
                 titleText.id = 'titleText';
-                titleText.style.margin = '0px 5px'
-                titleText.style.border = '1px solid red'
+                titleText.style.margin = '0px 5px 0px 0px'
                 titleText.style.fontSize = '15px'
+                titleText.style.padding = '5px'
 
                 titleIcon.innerText = projectDetails.author.titles[y][0];
                 titleText.innerText = projectDetails.author.titles[y][1];
 
                 list.appendChild(titleIcon);
                 list.appendChild(titleText);
-                list.style.backgroundColor = 'green';
+                // list.style.backgroundColor = 'green';
                 
                 heading.appendChild(list)
-                
             }
             section.appendChild(heading)
         }
@@ -319,18 +320,27 @@ let profileSectionFunction =()=>{
                 heading.innerText = 'Skills'
                 heading.style.textAlign = 'left'
             
-            // <i class="fas fa-check"></i>
             for(y=0; y < projectDetails.author.skills.length; y++){
                 let list = document.createElement('li')
+                list.style.display = 'flex'
+                list.style.flexDirection = 'row'
                 list.style.listStyleType = 'none'
+                list.style.fontFamily = 'arial';
+                list.style.fontSize = '15px';
                 let checkIcon = document.createElement('i');
                 checkIcon.className = 'fas fa-check'
+                checkIcon.style.backgroundColor = '#32cd32';
+                checkIcon.style.height = '50%'
+                checkIcon.style.color = 'white'
+                checkIcon.style.padding = '5px'
+                checkIcon.style.margin = '0px'
                 list.appendChild(checkIcon);
-                // list.innerText = projectDetails.author.skills[y];
-                let skillsText = document.createElement('p');
+                let skillsText = document.createElement('span');
+                skillsText.style.padding = '5px'
+                skillsText.style.fontSize = '15px'
+                skillsText.style.margin = '0px'
                 skillsText.innerText = projectDetails.author.skills[y];
                  list.appendChild(skillsText)
-                list.style.backgroundColor = 'pink'
                 list.style.textAlign = 'left'
                 heading.appendChild(list)
             }
@@ -343,11 +353,47 @@ let profileSectionFunction =()=>{
                 heading.innerText = 'Qualifications'
                 heading.style.textAlign = 'left'
 
+                
+
             for(y=0; y < projectDetails.author.qualifications.length; y++){
                 let list = document.createElement('li')
-                list.innerText = projectDetails.author.qualifications[y];
-                list.style.backgroundColor = 'orange';
-                list.style.textAlign = 'left';
+                list.style.display = 'flex'
+                list.style.flexDirection = 'row'
+                list.style.listStyleType = 'none';
+                list.style.fontFamily = 'arial';
+                list.style.fontSize = '15px'
+               //  list.style.textAlign = 'left';
+
+                let checkIcon = document.createElement('i');
+                if(y===0){
+                checkIcon.className = 'fas fa-book-open'
+                checkIcon.style.backgroundColor = 'black';
+                checkIcon.style.height = '50%'
+                checkIcon.style.color = 'white'
+                checkIcon.style.fontWeight = 'light'
+                checkIcon.style.padding = '5px'
+                checkIcon.style.margin = '0px'
+                list.appendChild(checkIcon);
+                
+                }          
+                else{
+                checkIcon.className = 'fas fa-user-graduate'
+                checkIcon.style.backgroundColor = '#add8e6';
+                checkIcon.style.height = '50%'
+                checkIcon.style.color = 'white'
+                checkIcon.style.padding = '5px'
+                checkIcon.style.margin = '0px'
+                list.appendChild(checkIcon);
+                
+                }
+                
+                let qualificationsText = document.createElement('span');
+                qualificationsText.style.padding = '5px';
+                qualificationsText.style.fontSize = '15px'
+                qualificationsText.style.margin = '0px'
+                qualificationsText.innerText = projectDetails.author.qualifications[y];
+                list.appendChild(qualificationsText);
+                list.style.textAlign = 'left'
                 heading.appendChild(list)
             }
             section.appendChild(heading)
@@ -368,11 +414,14 @@ let keywordsSectionFunction =()=>{
     heading.style.fontSize = '20px'
     heading.style.fontWeight = 'bold'
     heading.innerText = 'Keywords'
+    heading.style.textAlign = 'left'
+    heading.style.margin = '0px'
+
     let keywords = document.createElement('p')
     keywords.style.display = 'flex'
     keywords.style.flexWrap = 'wrap'
-    // keywords.style.justifyContent = 'space-around'
     keywords.style.alignItems = 'center'
+    keywords.style.margin = '0px'
     keywordsDiv.appendChild(keywords)
 
     let content = projectDetails.keywords
@@ -380,7 +429,7 @@ let keywordsSectionFunction =()=>{
         let color = `#${(Math.ceil(Math.random()*16777215)).toString(16)}`
         let span = document.createElement('span');
         span.style.borderRadius = '7px';
-        span.style.margin = '10px';
+        span.style.margin = '10px 10px 10px 0px';
         span.style.border = '0.4px solid black'
         span.style.padding = '5px';
         span.style.width = 'fit-content';
