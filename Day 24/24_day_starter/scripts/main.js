@@ -24,8 +24,20 @@ headerSelector.style.backgroundColor = 'none'
 headerSelector.style.margin = '0px 0px 20px 0px'
 
 let inputSelector = document.querySelector('#mass');
+inputSelector.style.fontFamily = 'arial'
+inputSelector.style.fontSize = '20px'
+inputSelector.style.fontWeight = 'bold'
+inputSelector.style.height = '50px'
+inputSelector.style.textAlign =  'center'
 
 let buttonSelector = document.querySelector('button');
+buttonSelector.style.fontFamily = 'arial'
+buttonSelector.style.backgroundColor = 'light-blue'
+buttonSelector.style.fontSize = '20px'
+buttonSelector.style.fontWeight = 'bold'
+buttonSelector.style.height = '50px'
+buttonSelector.style.borderRadius = '15px'
+buttonSelector.style.textAlign = 'center'
 
 let mainDivSelector = document.querySelector('main');
 mainDivSelector.style.display = 'flex';
@@ -33,7 +45,12 @@ mainDivSelector.style.display = 'flex';
 
 let optionSelector = document.querySelector('select')
 optionSelector.id = 'planetSelector'
-
+optionSelector.style.fontFamily = 'arial'
+optionSelector.style.fontSize = '20px'
+optionSelector.style.fontWeight = 'bold'
+optionSelector.style.height = '50px'
+optionSelector.style.borderRadius = '15px'
+optionSelector.style.textAlign = 'center'
 
 let createPlanetOption=()=>{
     for(x=0; x < planets.length; x++){
@@ -53,15 +70,18 @@ mainImageDiv.style.backgroundColor = 'rgba(255,255,255,0.1)'
 mainImageDiv.style.width = '100%'
 mainImageDiv.style.justifyContent = 'center'
 
+let createDescriptionDiv=()=>{
+    let descriptionDiv = document.querySelector('.description')
+    descriptionDiv.style.display = 'flex'
+    descriptionDiv.style.flexDirection = 'column'
+    descriptionDiv.style.justifyContent = 'center'
+    descriptionDiv.style.alignItems = 'center'
+    descriptionDiv.style.color = 'white'
+    descriptionDiv.style.fontSize = '50px'
+    descriptionDiv.style.width = '100%'
 
-let descriptionDiv = document.querySelector('.description')
-descriptionDiv.style.display = 'flex'
-descriptionDiv.style.flexDirection = 'column'
-descriptionDiv.style.justifyContent = 'center'
-descriptionDiv.style.alignItems = 'center'
-descriptionDiv.style.color = 'white'
-descriptionDiv.style.fontSize = '50px'
-descriptionDiv.style.width = '100%'
+    return descriptionDiv;
+}
 
 
 let imageSelector = document.querySelector('.image');
@@ -77,7 +97,6 @@ let descriptionParagraph = document.createElement('p');
 descriptionParagraph.id = 'descriptionParagraph';
 descriptionParagraph.innerText = 'The Weight of the object on: ';
 descriptionParagraph.style.fontSize = '30px'
-descriptionDiv.appendChild(descriptionParagraph);
 
 let planetSpan = document.createElement('span');
 planetSpan.id = 'planetSpan'
@@ -90,7 +109,6 @@ resultDiv.style.display = 'flex'
 resultDiv.style.justifyContent = 'center'
 resultDiv.style.alignItems = 'center'
 resultDiv.style.backgroundColor = 'red'
-resultDiv.style.border = '1px solid yellow'
 resultDiv.style.borderRadius = '100px'
 resultDiv.style.width = '200px';
 resultDiv.style.height = '200px';
@@ -98,36 +116,41 @@ resultDiv.innerText = 'red yana aiki'
 
 resultDiv.style.fontSize = '60px'
 resultDiv.style.textAlign = 'center'
-descriptionDiv.append(resultDiv);
 
 
 let calculateWeight =()=>{
 
    buttonSelector.addEventListener('click', ()=>{
+    let descriptionDiv = createDescriptionDiv();
+    descriptionDiv.appendChild(descriptionParagraph);
+    descriptionDiv.append(resultDiv);
 
     let mass = inputSelector.value;
     let planetType = optionSelector.value;
     let weight;
     let image = document.querySelector('.image')
     let description = document.querySelector('#descriptionParagraph')
-    let resultDiv = document.querySelector('#resultDiv');
     planetSpan.innerText = `${optionSelector.value}`;
 
-    if(planetType === "none"){
-       
-       image.style.display = 'none'
-       description.style.display = 'none'
-       resultDiv.style.display = 'none'
+    if(planetType === "none" || mass === ''){
+        let resultDiv = document.querySelector('#resultDiv');
+
+        image.style.display = 'none'
+        description.style.display = 'none'
+        resultDiv.style.display = 'none'
         resultDiv.style.display = 'flex'
         resultDiv.style.justifyContent = 'center'
         resultDiv.style.alignItems = 'center'
-        resultDiv.style.backgroundColor = 'red'
-        resultDiv.style.border = '1px solid yellow'
-        resultDiv.style.borderRadius = '100px'
+        resultDiv.style.backgroundColor = 'rgba(255,255,255,0.1)'
+        resultDiv.style.borderRadius = '20px'
         resultDiv.style.width = '75%';
-        resultDiv.style.height = '100px';
-
-        resultDiv.innerText = 'Mass Is Required';
+        resultDiv.style.height = '200px';
+        if(mass === ''){
+            resultDiv.innerText = 'Mass Is Required';
+        }
+        else{
+            resultDiv.innerText = 'You did not select a planet';
+        }
     }
     else{
         image.style.display = 'block'
@@ -136,8 +159,7 @@ let calculateWeight =()=>{
         resultDiv.style.display = 'flex'
         resultDiv.style.justifyContent = 'center'
         resultDiv.style.alignItems = 'center'
-        resultDiv.style.backgroundColor = 'red'
-        resultDiv.style.border = '1px solid yellow'
+        resultDiv.style.backgroundColor = 'rgba(255,255,255,0.1)'
         resultDiv.style.borderRadius = '100px'
         resultDiv.style.width = '200px';
         resultDiv.style.height = '200px';
