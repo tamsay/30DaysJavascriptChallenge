@@ -1,12 +1,48 @@
 let planets = ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto', 'moon']
 let planetGravity = [3.59, 8.87, 9.81, 3.77, 25.95, 11.08, 10.67, 14.07, 0.42, 1.62]
 
-// let solarSystem = {
-//     mercury : {
-//         gravity = 3.59,
-//         // 'image' : //source,
-//     }
-// }
+let solarSystem = {
+    mercury : {
+        gravity : 3.59,
+        // 'image' : //source,
+    },
+    venus : {
+        gravity : 8.87,
+        // 'image' : //source,
+    },
+    earth : {
+        gravity : 9.81,
+        // 'image' : //source,
+    },
+    mars : {
+        gravity : 3.77,
+        // 'image' : //source,
+    },
+    jupiter : {
+        gravity : 25.95,
+        // 'image' : //source,
+    },
+    saturn : {
+        gravity : 11.08,
+        // 'image' : //source,
+    },
+    uranus : {
+        gravity : 10.67,
+        // 'image' : //source,
+    },
+    neptune : {
+        gravity : 14.07,
+        // 'image' : //source,
+    },
+    pluto : {
+        gravity : 0.42,
+        // 'image' : //source,
+    },
+    moon : {
+        gravity : 1.62,
+        // 'image' : //source,
+    }
+}
 
 let body = document.querySelector('body')
 body.style.backgroundImage = 'url(images/galaxy.gif)'
@@ -41,7 +77,6 @@ buttonSelector.style.textAlign = 'center'
 
 let mainDivSelector = document.querySelector('main');
 mainDivSelector.style.display = 'flex';
-
 
 let optionSelector = document.querySelector('select')
 optionSelector.id = 'planetSelector'
@@ -83,15 +118,11 @@ let createDescriptionDiv=()=>{
     return descriptionDiv;
 }
 
-
 let imageSelector = document.querySelector('.image');
-imageSelector.style.backgroundColor = 'green'
 imageSelector.style.width = '70%'
 
 let planetImage = document.querySelector('.planet-image')
 planetImage.style.width = '100%'
-
-
 
 let descriptionParagraph = document.createElement('p');
 descriptionParagraph.id = 'descriptionParagraph';
@@ -130,7 +161,7 @@ let calculateWeight =()=>{
     let weight;
     let image = document.querySelector('.image')
     let description = document.querySelector('#descriptionParagraph')
-    planetSpan.innerText = `${optionSelector.value}`;
+    planetSpan.innerText = ` ${optionSelector.value.toUpperCase()}`;
 
     if(planetType === "none" || mass === ''){
         let resultDiv = document.querySelector('#resultDiv');
@@ -167,45 +198,71 @@ let calculateWeight =()=>{
         
         switch(true){
             case (planetType === 'mercury') : 
-             weight = mass * planetGravity[0];
-            console.log('mercury selected', weight)
-            resultDiv.innerText = weight.toFixed(0);
+             weight = mass * solarSystem.mercury.gravity;
+            resultDiv.innerText = `${weight.toFixed(1)}N`;
+            planetImage.src = './images/mercury.png'
             break;
             
             case (planetType === 'venus') : 
              weight = mass * planetGravity[1];
-            console.log('venus selected', weight)
-            resultDiv.innerText = weight.toFixed(0);
-    
+            resultDiv.innerText = `${weight.toFixed(1)}N`;
+            planetImage.src = './images/venus.png'
             break;
             
+            case (planetType === 'earth') : 
+             weight = mass * planetGravity[2];
+            resultDiv.innerText = `${weight.toFixed(1)}N`;
+            planetImage.src = './images/earth.png'
+            break;
+
+            case (planetType === 'mars') : 
+             weight = mass * planetGravity[3];
+            resultDiv.innerText = `${weight.toFixed(1)}N`;
+            planetImage.src = './images/mars.png'
+            break;
+
+            case (planetType === 'jupiter') : 
+             weight = mass * planetGravity[4];
+            resultDiv.innerText = `${weight.toFixed(1)}N`;
+            planetImage.src = './images/jupiter.png'
+            break;
+
+            case (planetType === 'saturn') : 
+             weight = mass * planetGravity[5];
+            resultDiv.innerText = `${weight.toFixed(1)}N`;
+            planetImage.src = './images/saturn.png'
+            break;
+
+            case (planetType === 'uranus') : 
+             weight = mass * planetGravity[6];
+            resultDiv.innerText = `${weight.toFixed(1)}N`;
+            planetImage.src = './images/uranus.png'
+            break;
+
+            case (planetType === 'neptune') : 
+             weight = mass * planetGravity[7];
+            resultDiv.innerText = `${weight.toFixed(1)}N`;
+            planetImage.src = './images/neptune.png'
+            break;
+
+            case (planetType === 'pluto') : 
+             weight = mass * planetGravity[8];
+            resultDiv.innerText = `${weight.toFixed(1)}N`;
+            planetImage.src = './images/pluto.png'
+            break;
+
+            case (planetType === 'moon') : 
+             weight = mass * planetGravity[9];
+            resultDiv.innerText = `${weight.toFixed(1)}N`;
+            planetImage.src = './images/moon.png'
+            break;
     
             default:
-             weight = mass * 1000;
-            console.log('others selected', weight);
-            resultDiv.innerText = weight.toFixed(0);
-    
+            weight = 'Something is Wrong somewhere'
+            console.log('There must be a problem to get here');
+            resultDiv.innerText = weight;
         }
     }
-    
    });
-   
-   
 }
 calculateWeight();
-
-
-/**
-weight = mg
-
-F = G((Mm)/r2)
-
-Where
-
-F is the gravitational force between two objects,
-G is the Gravitational Constant (6.674×10-11 Newtons x meters2 / kilograms2),
-M is the planet's mass (kg),
-m is your mass (kg), and
-r is the distance (m) between the centers of the two masses (the planet's radius).
-
- */
