@@ -44,27 +44,36 @@ let startingWordBtn = document.querySelector('#startingWord')
 let anyWordBtn = document.querySelector('#anyWord')
 let sortBtn = document.querySelector('#sortBtn')
 
+let inputValidator =(input)=>{
+    let regex = /[a-zA-Z]/gi
+    let result = input.match(regex);
+    if(result){
+        return true;
+    }
+    else{
+        return false;
+    }
+
+}
 
 startingWordBtn.addEventListener('click', ()=>{
     let input = document.querySelector('#textInput')
 
     input.addEventListener('input', ()=>{
-        let keyword = input.value.toLowerCase();
-        let len = keyword.length
-        let filteredList = []
-        let regex = /\w\w\w/g
-        let re1 = new RegExp(keyword);
+        let keyword = input.value;
+       let condition =  inputValidator(keyword);
+        if(condition){
+            let test = new RegExp(`\^${keyword.toLowerCase()}`)
 
-        
-        // ^([A-Z]{3})$
+       let filteredList = []
 
-        countries.map(element=>{
-            if(element.toLowerCase().match(re1)){
+     countries.map(element=>{
+            if(element.toLowerCase().match(test)){
                 filteredList.push(element)
             }
-            // console.log(element.match(re1))
         })
         console.log(filteredList);
+
         resultDisplay.innerText = '';
         filteredList.forEach((element, index)=>{
             let countrySpan = document.createElement('span');
@@ -79,6 +88,41 @@ startingWordBtn.addEventListener('click', ()=>{
             countrySpan.style.fontWeight = 'bold'
             resultDisplay.appendChild(countrySpan);
         })
-        
+        }
+        else{
+            console.log('invalid input')
+        }
+         
+        })
+    })
+
+anyWordBtn.addEventListener('click', ()=>{
+    let input = document.querySelector('#textInput')
+
+    input.addEventListener('input', ()=>{
+        let keyword = input.value.toLowerCase();
+        let len = keyword.length
+        let filteredList = []
+        let regex = new RegExp(keyword);
+
+        countries.map(element=>{
+            if(element.toLowerCase().match(regex)){
+                filteredList.push(element)
+            }
+        })
+        resultDisplay.innerText = '';
+        filteredList.forEach((element, index)=>{
+            let countrySpan = document.createElement('span');
+            countrySpan.id = `countrySpan${index}`;
+            countrySpan.style.backgroundColor = 'orange'
+            countrySpan.style.margin = '10px'
+            countrySpan.style.padding = '5px'
+            countrySpan.style.width = '6em'
+            countrySpan.style.height = '6em'
+            countrySpan.innerText = element.toUpperCase();
+            countrySpan.style.fontFamily = 'arial'
+            countrySpan.style.fontWeight = 'bold'
+            resultDisplay.appendChild(countrySpan);
+        })
         })
     })
