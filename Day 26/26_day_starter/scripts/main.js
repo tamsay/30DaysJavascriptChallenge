@@ -44,25 +44,13 @@ let startingWordBtn = document.querySelector('#startingWord')
 let anyWordBtn = document.querySelector('#anyWord')
 let sortBtn = document.querySelector('#sortBtn')
 
-let inputValidator =(input)=>{
-    let regex = /[a-zA-Z]/gi
-    let result = input.match(regex);
-    if(result){
-        return true;
-    }
-    else{
-        return false;
-    }
-
-}
 
 startingWordBtn.addEventListener('click', ()=>{
     let input = document.querySelector('#textInput')
 
     input.addEventListener('input', ()=>{
         let keyword = input.value;
-       let condition =  inputValidator(keyword);
-        if(condition){
+      
             let test = new RegExp(`\^${keyword.toLowerCase()}`)
 
        let filteredList = []
@@ -88,11 +76,7 @@ startingWordBtn.addEventListener('click', ()=>{
             countrySpan.style.fontWeight = 'bold'
             resultDisplay.appendChild(countrySpan);
         })
-        }
-        else{
-            console.log('invalid input')
-        }
-         
+ 
         })
     })
 
