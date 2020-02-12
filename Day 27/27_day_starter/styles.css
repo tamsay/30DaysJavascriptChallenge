@@ -1,0 +1,74 @@
+body {
+    font-family: Cambria, Helvetica, sans-serif;
+    height: max-content;
+}
+#header{
+    font-size: 60px;
+    letter-spacing: 15px;
+}
+#sliderDiv{
+    background-color: rgb(236, 176, 236);
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+#iconSpan{
+    font-size: 40px;
+    padding: 0px;
+    margin: 10px;
+}
+#titleSpan{
+    position: absolute;
+    display: block;
+    margin: 10px 0px 10px -10px;
+    width: fit-content;
+    font-size: 30px;
+    animation-name: anim-1;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes anim-1 {
+	0%, 33.33% { left: 5%; opacity: 0; }
+  33.33%,66.66% { left: 7.5%; opacity: 1; }
+  66.66%, 100% { left: 10%; opacity: 1; }
+}
+#profile{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#profile span{
+    font-weight: bold;
+}
+#coursesDiv{
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 50px 0px;
+}
+#coursesDiv  div{
+    background-color: rgb(243, 243, 215);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10em;
+    width: 10em;
+    text-align: center;
+    padding: 5px;
+}
+#coursesDiv div:hover{
+    background-color: rgb(161, 221, 240);
+    transform: scale(1.1);
+}
+#tutorials{
+    margin-top: 30px;
+}
+#tech{
+    font-weight: bold;
+}
+#stack{
+    width: max-content;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
