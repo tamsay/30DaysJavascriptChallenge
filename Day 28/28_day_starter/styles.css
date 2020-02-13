@@ -1,0 +1,28 @@
+body{
+
+}
+#inputDiv{
+    display: flex;
+    justify-content: space-around;
+}
+.input{
+    font-size: 15px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+#leaderBoard{
+    margin: 40px 0px;
+}
+#validationDiv{
+    background-color: lightcoral;
+    height: 20px;
+}
+#playerDetailsHeader{
+    display: flex;
+    justify-content: space-around;
+    background-color: lightblue;
+}
+#playerDetails{
+    display: flex;
+    justify-content: space-around;
+    background-color: limegreen;
+}

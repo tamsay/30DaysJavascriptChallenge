@@ -8,23 +8,19 @@
 
 <body>
     <h1>30 Days Of JavaScript Challenge Leaderboard</h1>
-    <div>
-        <input type="text" id="firstName">
-        <input type="text" id="LastName">
-        <input type="text" id="country">
-        <input type="number" id="playerScore">
+    <div id="inputDiv">
+        <input type="text" id="firstName" placeholder="First Name" class="input">
+        <input type="text" id="LastName" placeholder="Last Name" class="input">
+        <input type="text" id="country" placeholder="Country" class="input">
+        <input type="number" id="playerScore" placeholder="Player Score" class="input">
         <button id="addPlayer">Add Player</button>
     </div>
+    <p id="validationDiv"></p>
     <section id="leaderBoard">
-        <div id="playerDetails" class="profile">
-            <div>firstname</div>
-            <div>lastname</div>
+        <div id="playerDetailsHeader" class="profileHeader">
+            <div>fullname</div>
             <div>country</div>
-            <div>
-                <p>deleteplayer</p>
-                <p>addscore</p>
-                <p>subtractscore</p>
-            </div>
+            <div>score</div>
         </div>
     </section>
 
