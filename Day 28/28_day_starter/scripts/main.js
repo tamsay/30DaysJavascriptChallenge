@@ -5,9 +5,7 @@ let resultSection = document.querySelector('#leaderBoard')
 let createProfile=(num)=>{
     let playerDetails = document.createElement('div')
     playerDetails.id = `playerDetails${num}`
-    playerDetails.style.display = 'flex';
-    playerDetails.style.justifyContent = 'space-around'
-    playerDetails.style.backgroundColor = 'limegreen'
+    playerDetails.className = 'playerDetails'
 
     let fullnameDiv = document.createElement('div')
     fullnameDiv.id = `fullname${num}`
@@ -39,6 +37,7 @@ let createProfile=(num)=>{
 
     resultSection.appendChild(playerDetails)
 
+    
 }
 
 let addPlayerBtn = document.querySelector('#addPlayer');
@@ -48,7 +47,9 @@ let LastName = document.querySelector('#lastName')
 let country = document.querySelector('#country')
 let playerScore = document.querySelector('#playerScore')
 
-
+let deleteProfile=()=>{
+    
+}
 let count = 0;
 addPlayerBtn.addEventListener('click', ()=>{
     createProfile(count);
@@ -61,3 +62,8 @@ addPlayerBtn.addEventListener('click', ()=>{
     finalScore.innerText = playerScore.value;
     count++;
 })
+
+let totalProfile = document.querySelectorAll('.playerDetails')
+    console.log(totalProfile)
+
+// let deteleProfileBtn = document.querySelector('#')
