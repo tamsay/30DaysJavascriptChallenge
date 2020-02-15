@@ -32,10 +32,18 @@ let subtractFive =(num)=>{
 }
 let createProfile=(num)=>{
     let firstName = document.querySelector('#firstName')
-    let LastName = document.querySelector('#lastName')
+    let lastName = document.querySelector('#lastName')
     let country = document.querySelector('#country')
     let playerScore = document.querySelector('#playerScore')
+    let validationDiv = document.querySelector('#validationDiv')
 
+    if(firstName.value === '' || lastName.value === '' || country.value === '' || playerScore.value === ''){
+        console.log('All fields are required')
+        validationDiv.innerText = 'All fields are required'
+    }
+
+    else{
+    validationDiv.innerText = ''
     let playerDetails = document.createElement('div')
     playerDetails.id = `playerDetails${num}`
     playerDetails.className = 'playerDetails'
@@ -95,37 +103,16 @@ let createProfile=(num)=>{
 
     resultSection.appendChild(playerDetails)
     sortScore()
+    }
 
-    // fNameDiv.innerText = firstName.value;
-    // playerCountry.innerText = country.value;
-    // score.innerText = playerScore.value;
+    
 }
 
 let addPlayerBtn = document.querySelector('#addPlayer');
-
-// let firstName = document.querySelector('#firstName')
-// let LastName = document.querySelector('#lastName')
-// let country = document.querySelector('#country')
-// let playerScore = document.querySelector('#playerScore')
-
 let count = 0;
 addPlayerBtn.addEventListener('click', ()=>{
     createProfile(count);
-    // let fullnameDiv = document.querySelector(`#fullname${count}`)
-    // let finalPlayerCountry = document.querySelector(`#playerCountry${count}`)
-    // let finalScore = document.querySelector(`#finalScore${count}`)
-
-    // fullnameDiv.innerText = firstName.value;
-    // finalPlayerCountry.innerText = country.value;
-    // finalScore.innerText = playerScore.value;
-
-    // deleteProfile(count);
     count++;
-    // let sort = sortScore();
-})
-
-
-// deleteProfileBtn.style.backgroundColor = 'red'
-    
+})    
 
 
