@@ -1,0 +1,32 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#mainDiv{
+    width: fit-content;
+    text-align: left;
+    font-size: 100px;
+    background-color: lightblue;
+    animation: fadeIn 3s;
+}
+#newPara{
+    animation: fadeIn 3s;
+    /* animation: fadeOut 3s; */
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
