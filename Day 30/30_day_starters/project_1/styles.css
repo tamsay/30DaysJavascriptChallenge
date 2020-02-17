@@ -1,0 +1,16 @@
+body{
+    background-color: lightcyan;
+    text-align: center;
+}
+h1{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 50px;
+}
+#bioForm{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(230, 212, 214);
+    /* width: fit-content; */
+    justify-content: center;
+    /* align-items: center; */
+}
