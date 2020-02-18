@@ -1,0 +1,47 @@
+body{
+    background-color: lightsteelblue;
+}
+
+/* let header = document.querySelector('header')
+let totalCountriesSpan = document.querySelector('#totalCountries')
+let searchSummary = document.querySelector('#searchSummary')
+
+let searchBar = document.querySelector('#searchBar')
+let nameBtn = document.querySelector('#nameBtn')
+let capitalBtn = document.querySelector('#capitalBtn')
+let populationBtn = document.querySelector('#populationBtn')
+let graphicalDisplayBtn = document.querySelector('#graphicalDisplayBtn') */
+
+
+#fullResultSection{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+} 
+#countryDiv{
+    display: flex;
+    flex-direction: column;
+    /* width: fit-content; */
+    border: 1px solid greenyellow;
+    margin: 5px;
+    padding: 5px;    
+}
+.flagDiv{
+    background-size: contain;
+    height: 50px;
+    /* width: 100%; */
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+
+let populationGraphicsBtn = document.querySelector('#populationGraphicBtn')
+let languageGraphicsBtn = document.querySelector('#languageGraphicBtn')
+let graphicsSummary = document.querySelector('#graphicsSummary')
+
+let graphicsResult = document.querySelector('#graphicsResult')
+
+
+let ownerInfo = document.querySelector('#ownerInfo')
+let topArrow  = document.querySelector('#topArrow')

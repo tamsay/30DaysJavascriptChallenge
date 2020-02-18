@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>30 Days Javascript Challenge: Day 30 Project 2</title>
+</head>
+<body>
+    <header>
+        <h1 id="heading">World Countries Data</h1>
+        <p>Currently, we have <span id="totalCountries"></span> Countries</p>
+        <p id="searchSummary"></p>
+    </header>
+
+    <section id="searchSortSection">
+        <input type="text" id="searchBar" placeholder="Search countries by name, city and languages">
+        <div id="sortBtnGroup">
+            <button id="nameBtn" class="button">NAME</button>
+            <button id="capitalBtn" class="button">CAPITAL</button>
+            <button id="populationBtn" class="button">POPULATION</button>
+            <button id="graphicalDisplayBtn" class="button">GRAPHICAL DISPLAY</button>
+        </div>
+    </section>
+
+    <section id="fullResultSection">
+
+    </section>
+
+    <section id="graphicalDisplayHeader">
+        <div id="graphicsBtnGroup">
+            <button id="populationGraphicsBtn"></button>
+            <button id="languageGraphicsBtn"></button>
+        </div>
+        <p id="graphicsSummary"></p>
+    </section>
+
+    <section id="graphicsResult">
+
+    </section>
+
+    <footer id="footer">
+        <span id="ownerInfo"></span> <span id="topArrow"></span>
+    </footer>
+
+    
+
+    <script src="../project_2/data/countries_data.js"></script>
+    <script src="../project_2/scripts/main.js"></script>
+</body>
+</html>
