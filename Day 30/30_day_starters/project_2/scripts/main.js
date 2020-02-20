@@ -1,3 +1,4 @@
+let body = document.querySelector('body')
 let header = document.querySelector('header')
 let totalCountriesSpan = document.querySelector('#totalCountries')
     totalCountriesSpan.innerText = `${countries.length}`
@@ -32,8 +33,7 @@ let displayGraph=(array)=>{
    
     let totalPopDiv = document.createElement('div')
     totalPopDiv.id = 'masterPopulation'
-    totalPopDiv.style.className = 'graphicsValue'
-    totalPopDiv.style.display = 'flex'
+    totalPopDiv.className = 'graphicsValue'
 
     let countrySpan = document.createElement('p')
     countrySpan.innerText = 'World Population'
@@ -51,10 +51,9 @@ let displayGraph=(array)=>{
     graphicsResult.appendChild(totalPopDiv)
 
     for (x=0; x < array.length; x++){
-        let width = (array[x].population/totalPopulation)*100
+        let width = (array[x].population/(totalPopulation))*100
         let totalPopDiv = document.createElement('div')
-        totalPopDiv.style.className = 'graphicsValue'
-        totalPopDiv.style.display = 'flex'
+        totalPopDiv.className = 'graphicsValue'
 
         let countrySpan = document.createElement('p')
         countrySpan.innerText = `${array[x].name}`
@@ -77,8 +76,7 @@ let displayTopTenLanguages=(array)=>{
 
     for (x=0; x < array.length; x++){
         let totalPopDiv = document.createElement('div')
-        totalPopDiv.style.className = 'graphicsValue'
-        totalPopDiv.style.display = 'flex'
+        totalPopDiv.className = 'graphicsValue'
 
         let countrySpan = document.createElement('p')
         countrySpan.innerText = `${array[x][0]}`
@@ -105,25 +103,22 @@ let createAllCountries =(element)=>{
         let countryDiv = document.createElement('div')
             countryDiv.id = `countryDiv${x}`;
             countryDiv.className = 'countryDiv'
-            countryDiv.style.backgroundColor = 'pink'
 
         let flagDiv = document.createElement('div')
             flagDiv.id = `flagDiv${x}`
             flagDiv.className = `flagDiv`
-            flagDiv.style.border = '1px solid red'
             flagDiv.style.backgroundImage = `url(${element[x].flag})`
             countryDiv.appendChild(flagDiv)
 
         let countryName = document.createElement('p')
             countryName.id = `countryName${x}`
             countryName.className = 'countryName'
-            countryName.style.border = '1px solid blue'
             countryName.innerText = element[x].name
             countryDiv.appendChild(countryName)
         
         let countryCapital = document.createElement('p')
             countryCapital.id = `countryCapital${x}`
-            countryCapital.style.border = '1px solid green'
+            countryCapital.className = 'countryCapital'
 
         let countryCapitalSpan = document.createElement('span')
             countryCapitalSpan.innerText = 'Capital: '
@@ -137,14 +132,13 @@ let createAllCountries =(element)=>{
 
         let languages = document.createElement('p')
             languages.id = `languages${x}`
-            languages.style.border = '1px solid white'
+            languages.className = 'languages'
             languages.innerText = `Languages: ${element[x].languages.join(' , ')}`
             countryDiv.appendChild(languages)
         
         let population = document.createElement('p')
             population.id = `population${x}`
-            population.style.border = '1px solid yellow'
-
+            population.className = 'population'
         let populationSpan = document.createElement('span')
             populationSpan.innerText = 'Population: '
             population.appendChild(populationSpan)
@@ -171,6 +165,7 @@ searchBar.addEventListener('input', ()=>{
         })
         createAllCountries(newArray)    
         displayGraph(newArray)
+        searchSummary.innerText = `${newArray.length} countries satisfied the search criteria`
 })
 
 let countName = 0;
@@ -319,3 +314,6 @@ populationBtn.addEventListener('click', sortCountriesByPopulation)
 graphicalDisplayBtn.addEventListener('click', topTen)
 populationGraphicsBtn.addEventListener('click', topTen)
 languageGraphicsBtn.addEventListener('click', topLanguages)
+topArrow.addEventListener('click', ()=>{
+    window.scrollTo(0,0)
+})

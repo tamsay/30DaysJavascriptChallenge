@@ -9,7 +9,7 @@
 <body>
     <header>
         <h1 id="heading">World Countries Data</h1>
-        <p>Currently, we have <span id="totalCountries"></span> Countries</p>
+        <p id="headerSummary">Currently, we have <span id="totalCountries"></span> Countries</p>
         <p id="searchSummary"></p>
     </header>
 
@@ -19,7 +19,7 @@
             <button id="nameBtn" class="button">NAME</button>
             <button id="capitalBtn" class="button">CAPITAL</button>
             <button id="populationBtn" class="button">POPULATION</button>
-            <button id="graphicalDisplayBtn" class="button">GRAPHICAL DISPLAY</button>
+            <img id="graphicalDisplayBtn" class="buttn" src="chart-bar.svg">
         </div>
     </section>
 
@@ -29,8 +29,8 @@
 
     <section id="graphicalDisplayHeader">
         <div id="graphicsBtnGroup">
-            <button id="populationGraphicsBtn"></button>
-            <button id="languageGraphicsBtn"></button>
+            <button id="populationGraphicsBtn" class="button">Top Ten Population</button>
+            <button id="languageGraphicsBtn" class="button">Top Ten Languages</button>
         </div>
         <p id="graphicsSummary"></p>
     </section>
@@ -40,7 +40,7 @@
     </section>
 
     <footer id="footer">
-        <span id="ownerInfo"></span> <span id="topArrow"></span>
+        <span id="ownerInfo">Designed By Temitope</span> <img id="topArrow" src="arrow-up.svg">
     </footer>    
 
     <script src="../project_2/data/countries_data.js"></script>
