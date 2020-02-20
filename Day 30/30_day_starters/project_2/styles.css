@@ -36,7 +36,7 @@ let graphicalDisplayBtn = document.querySelector('#graphicalDisplayBtn') */
 }
 
 
-let populationGraphicsBtn = document.querySelector('#populationGraphicBtn')
+/* let populationGraphicsBtn = document.querySelector('#populationGraphicBtn')
 let languageGraphicsBtn = document.querySelector('#languageGraphicBtn')
 let graphicsSummary = document.querySelector('#graphicsSummary')
 
@@ -44,4 +44,4 @@ let graphicsResult = document.querySelector('#graphicsResult')
 
 
 let ownerInfo = document.querySelector('#ownerInfo')
-let topArrow  = document.querySelector('#topArrow')
+let topArrow  = document.querySelector('#topArrow') */

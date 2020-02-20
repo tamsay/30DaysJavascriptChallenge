@@ -1,6 +1,6 @@
-
 let header = document.querySelector('header')
 let totalCountriesSpan = document.querySelector('#totalCountries')
+    totalCountriesSpan.innerText = `${countries.length}`
 let searchSummary = document.querySelector('#searchSummary')
 
 let searchBar = document.querySelector('#searchBar')
@@ -9,20 +9,94 @@ let capitalBtn = document.querySelector('#capitalBtn')
 let populationBtn = document.querySelector('#populationBtn')
 let graphicalDisplayBtn = document.querySelector('#graphicalDisplayBtn')
 
-
 let fullResultSection = document.querySelector('#fullResultSection');
 
-
-
-let populationGraphicsBtn = document.querySelector('#populationGraphicBtn')
-let languageGraphicsBtn = document.querySelector('#languageGraphicBtn')
+let populationGraphicsBtn = document.querySelector('#populationGraphicsBtn')
+let languageGraphicsBtn = document.querySelector('#languageGraphicsBtn')
 let graphicsSummary = document.querySelector('#graphicsSummary')
 
 let graphicsResult = document.querySelector('#graphicsResult')
 
-
 let ownerInfo = document.querySelector('#ownerInfo')
 let topArrow  = document.querySelector('#topArrow')
+
+let displayGraph=(array)=>{
+    graphicsResult.innerText = ''
+
+    array.sort((a,b)=>{
+        return b.population - a.population
+    })
+    let totalPopulation = countries.reduce((acc, arr)=>{
+        return arr.population + acc;
+    },0)
+   
+    let totalPopDiv = document.createElement('div')
+    totalPopDiv.id = 'masterPopulation'
+    totalPopDiv.style.className = 'graphicsValue'
+    totalPopDiv.style.display = 'flex'
+
+    let countrySpan = document.createElement('p')
+    countrySpan.innerText = 'World Population'
+    totalPopDiv.appendChild(countrySpan)
+
+    let graphSpan = document.createElement('p')
+    graphSpan.style.width = '100%'
+    graphSpan.style.backgroundColor = 'green'
+    totalPopDiv.appendChild(graphSpan)
+
+    let sizeSpan = document.createElement('p')
+    sizeSpan.innerText = `${totalPopulation}`
+    totalPopDiv.appendChild(sizeSpan)
+
+    graphicsResult.appendChild(totalPopDiv)
+
+    for (x=0; x < array.length; x++){
+        let width = (array[x].population/totalPopulation)*100
+        let totalPopDiv = document.createElement('div')
+        totalPopDiv.style.className = 'graphicsValue'
+        totalPopDiv.style.display = 'flex'
+
+        let countrySpan = document.createElement('p')
+        countrySpan.innerText = `${array[x].name}`
+        totalPopDiv.appendChild(countrySpan)
+
+        let graphSpan = document.createElement('p')
+        graphSpan.style.width = `${width}%`
+        graphSpan.style.backgroundColor = 'green'
+        totalPopDiv.appendChild(graphSpan)
+
+        let sizeSpan = document.createElement('p')
+        sizeSpan.innerText = `${array[x].population}`
+        totalPopDiv.appendChild(sizeSpan)
+
+        graphicsResult.appendChild(totalPopDiv)
+    }
+}
+let displayTopTenLanguages=(array)=>{
+    graphicsResult.innerText = ''
+
+    for (x=0; x < array.length; x++){
+        let totalPopDiv = document.createElement('div')
+        totalPopDiv.style.className = 'graphicsValue'
+        totalPopDiv.style.display = 'flex'
+
+        let countrySpan = document.createElement('p')
+        countrySpan.innerText = `${array[x][0]}`
+        totalPopDiv.appendChild(countrySpan)
+
+        let graphSpan = document.createElement('p')
+        graphSpan.style.width = `${array[x][1]}%`
+        graphSpan.style.backgroundColor = 'green'
+        totalPopDiv.appendChild(graphSpan)
+
+        let sizeSpan = document.createElement('p')
+        sizeSpan.innerText = `${array[x][1]}`
+        totalPopDiv.appendChild(sizeSpan)
+
+        graphicsSummary.innerText = 'The Top 10 Languages in the World'
+        graphicsResult.appendChild(totalPopDiv)
+    }
+}
 
 let createAllCountries =(element)=>{
     fullResultSection.innerText = ''
@@ -82,14 +156,12 @@ let createAllCountries =(element)=>{
             countryDiv.appendChild(population)
 
         fullResultSection.appendChild(countryDiv)
-        // displayGraph(10)
     }
+    displayGraph(element)
 }
 createAllCountries(countries)
 
-
 searchBar.addEventListener('input', ()=>{
-    
         let input = searchBar.value.toLowerCase();
         let newArray = []
         countries.filter(items=>{
@@ -98,9 +170,8 @@ searchBar.addEventListener('input', ()=>{
             } 
         })
         createAllCountries(newArray)    
-        // displayGraph(newArray)
+        displayGraph(newArray)
 })
-
 
 let countName = 0;
 let sortCountriesByName =()=>{
@@ -137,6 +208,7 @@ let sortCountriesByName =()=>{
         countName++
         }
 }
+
 let countCapital = 0;
 let sortCountriesByCapital=()=>{
         let countryCapital = document.querySelectorAll('.countryCapital');
@@ -204,47 +276,46 @@ let sortCountriesByPopulation=()=>{
     }
 }
 
-let displayGraph=(array)=>{
-    // let data = sortCountriesByPopulation();
-    // let data = document.querySelectorAll('.countryDiv')
-    let countryPopulation = document.querySelectorAll('.population');
+let topTen=()=>{
+    let newCountries = [...countries]
 
-        let sortedPopulation = [...countryPopulation].sort((b,a)=>{
-            return a.textContent - b.textContent;
-        })
-        let topTen = sortedPopulation.slice(0,array)
-        let totalPopulation = countries.reduce((acc, arr)=>{
-            return arr.population + acc;
-        },0)
-        // console.log(totalPopulation)
-
-        let totalPopDiv = document.createElement('div')
-        totalPopDiv.id = 'masterPopulation'
-        totalPopDiv.style.display = 'flex'
-
-        let countrySpan = document.createElement('p')
-        countrySpan.innerText = 'World Population'
-        totalPopDiv.appendChild(countrySpan)
-
-        let graphSpan = document.createElement('p')
-        graphSpan.style.width = '100%'
-        graphSpan.style.backgroundColor = 'green'
-        totalPopDiv.appendChild(graphSpan)
-
-        let sizeSpan = document.createElement('p')
-        sizeSpan.innerText = `${totalPopulation}`
-        totalPopDiv.appendChild(sizeSpan)
-
-        graphicsResult.appendChild(totalPopDiv)
-
-        for (x=0; x < array; x++){
-            graphicsResult.appendChild(topTen[x].parentElement.parentElement)
-        }
+    newCountries.sort((a,b)=>{
+        return b.population - a.population
+    })
+    let topTenCountries = newCountries.slice(0, 10)
+    graphicsSummary.innerText = 'The 10 most populous countries in the world'
+    displayGraph(topTenCountries);
 }
-displayGraph(10)
 
+let topLanguages=()=>{
+    let newCountries = [...countries]
+
+    let allLang = [];
+    newCountries.map(element=>{
+        allLang.push(element.languages)
+    })
+    let newCountriesSet = new Set(allLang.flat(Infinity))
+
+    let languageObject = []
+    for(item of newCountriesSet){
+        let count = 0
+        for(element of allLang.flat(Infinity)){
+            if(item === element) {
+                count++
+            }
+        }
+        languageObject.push([item, count])
+    }
+    languageObject.sort((a,b)=>{
+        return b[1] - a[1]
+    })
+    let topTenLanguage = languageObject.slice(0, 10)
+    displayTopTenLanguages(topTenLanguage)
+}
 
 nameBtn.addEventListener('click', sortCountriesByName)
 capitalBtn.addEventListener('click', sortCountriesByCapital)
 populationBtn.addEventListener('click', sortCountriesByPopulation)
-
+graphicalDisplayBtn.addEventListener('click', topTen)
+populationGraphicsBtn.addEventListener('click', topTen)
+languageGraphicsBtn.addEventListener('click', topLanguages)
